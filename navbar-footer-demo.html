@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>中软国际科技服务有限公司</title>
   <style>
     * {
@@ -17,6 +17,7 @@
       font-size: 13px;
       color: #333;
       background: #f5f5f5;
+      min-height: 100vh;
     }
 
     a {
@@ -30,16 +31,26 @@
 
     /* ===== TOP BAR ===== */
     .top-bar {
-        height: 30px;
-        display: flex;
-        justify-content: flex-end;
-        padding: 0 16px;
-        font-size: 14px;
-        color: #666;
-        gap: 10px;
-        align-items: center;
+      background: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 16px;
+      font-size: 12px;
+      color: #666;
+      gap: 10px;
     }
 
+
+    .top-bar a {
+      color: #555;
+    }
+
+    .top-bar a:hover {
+      color: #00a0a0;
+    }
 
     /* ===== HEADER ===== */
     .header {
@@ -49,7 +60,6 @@
       align-items: center;
       gap: 20px;
       position: relative;
-      width:1200px;
     }
 
     /* ===== HEADER NAV ===== */
@@ -60,6 +70,9 @@
       align-items: center;
     }
 
+    .nav-item {
+      position: relative;
+    }
 
     .nav-item>a {
       font-size: 14px;
@@ -84,13 +97,13 @@
       left: 0;
       background: #fff;
       border: 1px solid #e0e0e0;
+      border-top: 2px solid #00a0a0;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
       z-index: 999;
       padding: 16px 20px;
       min-width: 680px;
       min-height: 200px;
       border-radius: 0 0 4px 4px;
-      width:1200px;
     }
 
     .nav-popup.show {
@@ -145,9 +158,9 @@
     .search-box input {
       border: none;
       outline: none;
-      padding: 6px 8px;
-      font-size: 14px;
-      width: 250px;
+      padding: 5px 8px;
+      font-size: 12px;
+      width: 200px;
       color: #999;
     }
 
@@ -157,11 +170,9 @@
       border: none;
       padding: 6px 20px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 12px;
       white-space: nowrap;
       border-radius: 20px;
-      height:30px;
-      width:70px;
 
     }
 
@@ -338,8 +349,6 @@
       margin: 10px 0;
       border: 1px solid #e0e0e0;
       border-radius: 2px;
-     height: 540px;
-     border: none;
     }
 
     .table-header {
@@ -355,16 +364,10 @@
       font-weight: bold;
     }
 
-    .hover1{
-      padding: 10px;
-      color:#31ac90 !important
-    }
-
-    
-    .hover1:hover {
-      background-color: #31ac90;
-      color: #fff !important;
-      text-decoration: none;
+    .table-header .col-btn {
+      /* display: flex;
+      align-items: center;
+      justify-content: center; */
     }
 
     .btn-green {
@@ -493,138 +496,133 @@
 
     /* ===== FOOTER ===== */
     .footer {
-        text-align: center;
-        padding: 14px 16px;
-        font-size: 12px;
-        color: #999;
-        margin-top: 10px;
-        line-height: 1.8;
-        font-size: 14px;
-        color: #2a2a2a;
+      text-align: center;
+      padding: 14px 16px;
+      font-size: 12px;
+      color: #999;
+      margin-top: 10px;
+      line-height: 1.8;
     }
 
     .page-wrap {
       padding: 0 200px;
+      min-height: calc(100vh - 35px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-wrap > .footer {
+      margin-top: auto;
     }
 
     /* ===== MOBILE ≤ 768px ===== */
-    @media (max-width: 768px) {
-      .page-wrap {
-        padding: 0;
-      }
+@media (max-width: 768px) {
+  .page-wrap {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
-      .header {
-        background: transparent;
-      }
+  /* 隐藏汉堡菜单按钮（因为不需要折叠） */
+  .menu-toggle {
+    display: none;
+  }
 
-      .header-nav.open {
-        background: #fff;
-      }
+  /* 导航菜单始终显示，不折叠 */
+  .header-nav {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;      /* 允许菜单项换行，防止溢出 */
+    gap: 8px 16px;
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 8px 12px;
+    margin-top: 4px;
+    gap: 6px 12px;   /* 减小行间距和列间距 */
+    padding: 6px 12px;
+  }
 
-      .top-bar {
-        gap: 8px;
-        padding: 0 12px;
-        font-size: 11px;
-        align-items: center;
-      }
+  /* 每个导航项（最近使用、我的代办等）改为内联块或flex项 */
+  .nav-item {
+    flex-shrink: 0;
+  }
 
-      .header {
-        padding: 8px 12px;
-        gap: 10px;
-      }
+  .nav-item > a {
+    padding: 4px 8px;
+    border-bottom: none;
+    font-size: 13px;
+    white-space: nowrap;
+     font-size: 12px;  /* 稍微缩小字体 */
+    padding: 4px 6px;
+  }
 
-      .menu-toggle {
-        display: flex;
-      }
+  /* 移动端弹出菜单（popup）仍保持原来的交互（hover/click 展开）但调整样式 */
+  .nav-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    max-width: 90vw;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 
-      .header-nav {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        border-top: 1px solid #e0e0e0;
-        border-bottom: 2px solid #00a0a0;
-        z-index: 200;
-        padding: 6px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      }
+  /* 搜索框占据剩余宽度 */
+  .search-box {
+    flex: 1;
+    margin-left: 12px;
+    min-width: 0;  /* 允许缩小 */
+  }
+  .search-box input {
+    width: 100%;
+    min-width: 0;
+  }
+    .search-box button {
+    padding: 6px 12px;
+    font-size: 11px;
+     white-space: nowrap;
+  }
 
-      .header-nav.open {
-        display: flex;
-      }
+  /* 轮播图高度减小 */
+  .carousel {
+    margin: 8px 12px;
+    height: 90px;
+  }
 
-      .nav-item>a {
-        padding: 10px 16px;
-        border-bottom: 1px solid #f5f5f5;
-        border-left: 3px solid transparent;
-      }
+  /* 内容区域边距 */
+  .main {
+    margin: 8px 12px;
+  }
 
-      .nav-item>a.active,
-      .nav-item>a:hover {
-        border-left-color: #00a0a0;
-        color: #00a0a0;
-      }
+  /* 表格和公告样式调整（保持原有简洁） */
+  .table-header {
+    grid-template-columns: 60px 1fr 80px;
+    padding-left: 8px;
+  }
+  .table-header div:first-child {
+    display: none;
+  }
+  .notice-item {
+    grid-template-columns: 60px 1fr 80px;
+  }
+  .notice-item div:first-child {
+    display: none;
+  }
+  .notice-item div {
+    padding: 8px 4px;
+  }
+  .notice-item .date {
+    font-size: 11px;
+  }
 
-      .nav-popup {
-        position: static;
-        border: none;
-        border-top: 1px solid #f0f0f0;
-        box-shadow: none;
-        min-width: 0;
-        padding: 10px 16px;
-        display: none;
-      }
-
-      .nav-item.open .nav-popup {
-        display: block;
-      }
-
-      .search-box {
-        flex: 1;
-      }
-
-      .search-box input {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .carousel {
-        margin: 8px 12px;
-        height: 90px;
-      }
-
-      .main {
-        margin: 8px 12px;
-      }
-
-      .table-header {
-        grid-template-columns: 60px 1fr 80px;
-        padding-left: 8px;
-      }
-
-      .table-header div:first-child {
-        display: none;
-      }
-
-      .notice-item {
-        grid-template-columns: 60px 1fr 80px;
-      }
-
-      .notice-item div:first-child {
-        display: none;
-      }
-
-      .notice-item div {
-        padding: 8px 4px;
-      }
-
-      .notice-item .date {
-        font-size: 11px;
-      }
-    }
+  /* 底部版权信息确保可见（内容撑开即可，不需要额外修改） */
+  .footer {
+    margin-top: 10px;
+  }
+}
 
     /* ===== MOBILE ≤ 480px ===== */
     @media (max-width: 480px) {
@@ -661,6 +659,19 @@
         font-size: 11px;
       }
     }
+
+
+    .green{
+      padding: 10px;
+      color:#31ac90 !important
+    }
+
+    
+    .green:hover {
+      background-color: #31ac90;
+      color: #fff !important;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -670,11 +681,10 @@
   <div class="top-bar">
     <span>您好 </span>
     <a href="#">王兴丹</a>
-    <span class="sep">|</span>
-    <a href="#" class="hover1">退出</a>
-    <a href="#" class="hover1">修改密码</a>
+    <span class="sep ">|</span>
+    <a href="#" class="green">退出</a>
+    <a href="#" class="green">修改密码</a>
   </div>
-  <hr style="border-top: 1px solid #d2d2d2;width: 300px;float: right;margin-top:3px;"></hr>
 
   <div class="page-wrap">
     <!-- HEADER -->
@@ -829,142 +839,8 @@
       </div>
     </div>
 
-    <!-- NAV TABS + DROPDOWN -->
-    <div class="nav-dropdown-wrapper">
-      <!-- <div class="nav-dropdown-grid">
-        <div class="nav-tab active">财经服务</div>
-        <div class="nav-tab" style="grid-column:span 2">HR服务 <span class="arrow">▾</span></div>
-        <div class="nav-tab">行政服务 <span class="arrow">▾</span></div>
-        <div class="nav-tab">IT与安全 <span class="arrow">▾</span></div>
-        <div class="nav-tab">有问必答</div>
-        <div class="nav-tab">知识学习</div>
-        <div class="nav-tab" style="grid-column:span 2">运营管理 <span class="arrow">▾</span></div>
-        <div class="nav-tab" style="grid-column:span 2">办公审批 <span class="arrow">▾</span></div>
+    
 
-        <div class="dropdown-col">
-          <a href="#">SSE</a><a href="#">支付报销</a><a href="#">报销审批</a>
-          <a href="#">预算管理</a><a href="#">财务专区</a><a href="#">内控与风险</a>
-        </div>
-        <div class="dropdown-col no-divider">
-          <a href="#">员工手册</a><a href="#">个人信息</a><a href="#">商保政策</a>
-          <a href="#">人事用章</a><a href="#">BCG签署</a>
-        </div>
-        <div class="dropdown-col ">
-          <a href="#">行为规范</a><a href="#">个人考勤</a><a href="#">商保投保</a>
-          <a href="#">伯乐内推</a><a href="#">专家共享</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">差旅服务</a><a href="#">资产管理</a><a href="#">报修服务</a>
-          <a href="#">场地管理</a><a href="#">办公用品申请</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">企业邮箱</a><a href="#">密码取回</a><a href="#">ODC门禁管理</a>
-          <a href="#">IT需求</a><a href="#">数据申请</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">常见问题解答</a><a href="#">员工有问必答</a><a href="#">AI会议纪要</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">学习平台</a><a href="#">极客社区</a><a href="#">流程管理平台</a>
-        </div>
-        <div class="dropdown-col no-divider">
-          <a href="#">运营平台</a><a href="#">项目预算模块</a><a href="#">项目管理</a><a href="#">扬帆远航</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">经营管理驾驶舱</a><a href="#">销售专区</a><a href="#">非HW运营管理</a><a href="#">工时申报</a>
-        </div>
-        <div class="dropdown-col no-divider">
-          <a href="#">OA办公流程</a><a href="#">工作台-云大厅</a><a href="#">待办中心</a>
-        </div>
-        <div class="dropdown-col">
-          <a href="#">廉政举报</a><a href="#">CSI India</a><a href="#">违规申报、举报（信息安全）</a>
-        </div>
-      </div> -->
-    </div>
-
-    <!-- CAROUSEL -->
-    <!-- <div class="carousel" id="carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="https://picsum.photos/seed/banner1/1200/120" alt="banner1"></div>
-        <div class="carousel-slide"><img src="https://picsum.photos/seed/banner2/1200/120" alt="banner2"></div>
-        <div class="carousel-slide"><img src="https://picsum.photos/seed/banner3/1200/120" alt="banner3"></div>
-        <div class="carousel-slide"><img src="https://picsum.photos/seed/banner4/1200/120" alt="banner4"></div>
-        <div class="carousel-slide"><img src="https://picsum.photos/seed/banner5/1200/120" alt="banner5"></div>
-      </div>
-      <div class="carousel-dots" id="carouselDots">
-        <span class="active"></span><span></span><span></span><span></span><span></span>
-      </div>
-    </div> -->
-
-    <!-- MAIN TABLE -->
-    <div class="main">
-      <!-- <div class="table-header">
-        <div class="col-btn"><button class="btn-green">发布人</button></div>
-        <div><button class="btn-green">类型</button></div>
-        <div><button class="btn-green">标题</button></div>
-        <div class="col-btn"><button class="btn-green">发布时间</button></div>
-      </div>
-      <div class="notice-body">
-        <div class="notice-label">
-          <div class="notice-label-inner">
-            <div class="notice-label-line"></div>
-            <div class="notice-label-text">公告牌</div>
-            <div class="notice-label-line"></div>
-          </div>
-        </div>
-        <div class="notice-list">
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">中软国际员工手册V1.7</a></div>
-            <div class="date">2024-12-25</div>
-          </div>
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">中软国际员工行为规范V3.0</a></div>
-            <div class="date">2024-12-25</div>
-          </div>
-          <div class="notice-item">
-            <div>赵洁</div>
-            <div><span class="tag orange">公众通知</span></div>
-            <div class="title"><a href="#">【2026】截止2026年3月份HTSC培训规范，员前考试说明</a></div>
-            <div class="date">2026-04-07</div>
-          </div>
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">【2026】冀软字 016号 关于通知业务员相关于三部社会通知通知</a></div>
-            <div class="date">2026-03-30</div>
-          </div>
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">【2026】冀软字 015号 关于通知业务员培训组织机构和编制以通知</a></div>
-            <div class="date">2026-03-30</div>
-          </div>
-          <div class="notice-item">
-            <div>赵洁</div>
-            <div><span class="tag blue">公众通知</span></div>
-            <div class="title"><a href="#">【2026】CSI HTSG&amp;ABG 002号 关于发布《HTSG&amp;ABC 业绩事件出版与问题制度》等四项管理规定通知</a></div>
-            <div class="date">2026-03-17</div>
-          </div>
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">【2026】冀软字 013号 关于华为技术与解决方案事业部相关于部委更新的通知</a></div>
-            <div class="date">2026-03-12</div>
-          </div>
-          <div class="notice-item">
-            <div>系统管理员</div>
-            <div><span class="tag">公众通知</span></div>
-            <div class="title"><a href="#">【2026】冀软字 012号 关于成立AI战略预备队的通知</a></div>
-            <div class="date">2026-03-08</div>
-          </div>
-        </div>
-      </div>
-      <div class="more-link"><a href="#">更多 &gt;&gt;</a></div> -->
-    </div>
 
     <!-- FOOTER -->
     <div class="footer">
@@ -973,7 +849,7 @@
   </div>
 
   <script>
-
+    // Hamburger
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('headerNav');
     toggle.addEventListener('click', () => nav.classList.toggle('open'));
@@ -981,24 +857,38 @@
       if (!toggle.contains(e.target) && !nav.contains(e.target)) nav.classList.remove('open');
     });
 
-  
-    document.querySelectorAll('.nav-item').forEach(item => {
+    // Nav popup hover（互斥：打开一个时关闭其他）
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
       const popup = item.querySelector('.nav-popup');
       if (!popup) return;
       let timer = null;
-      const open = () => { clearTimeout(timer); popup.classList.add('show'); };
+
+      const closeOthers = () => {
+        navItems.forEach(other => {
+          if (other !== item) {
+            const p = other.querySelector('.nav-popup');
+            if (p) p.classList.remove('show');
+            other.classList.remove('open');
+          }
+        });
+      };
+
+      const open = () => { clearTimeout(timer); closeOthers(); popup.classList.add('show'); };
       const close = () => { timer = setTimeout(() => popup.classList.remove('show'), 80); };
+
       item.addEventListener('mouseenter', open);
       item.addEventListener('mouseleave', close);
       popup.addEventListener('mouseenter', open);
       popup.addEventListener('mouseleave', close);
+
       const link = item.querySelector('a');
       if (link) link.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) { e.preventDefault(); item.classList.toggle('open'); }
       });
     });
 
-
+    // Nav tab active
     document.querySelectorAll('.nav-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -1006,7 +896,7 @@
       });
     });
 
-
+    // Carousel
     const track = document.getElementById('carouselTrack');
     const dots = document.querySelectorAll('#carouselDots span');
     const total = dots.length;
